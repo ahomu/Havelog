@@ -1,0 +1,6 @@
+[submodule "public/javascripts/clayworks"]
+	path = public/javascripts/clayworks
+	url = git@github.com:ahomu/Clayworks.git
+[submodule "public/javascripts/hayate"]
+	path = public/javascripts/hayate
+	url = git@github.com:ahomu/Hayate.git

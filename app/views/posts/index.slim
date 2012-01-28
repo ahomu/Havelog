@@ -1,0 +1,7 @@
+- content_for :include_head do
+  == feed_tag(:rss, url(:posts, :index, :format => :rss),:title => "RSS")
+
+- if @posts.length != 0
+  == partial 'posts/post', :collection => @posts
+- else
+  == markdown '##not Found'

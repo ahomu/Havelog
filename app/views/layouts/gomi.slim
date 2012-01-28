@@ -1,0 +1,13 @@
+      nav#sidebar
+        - form_tag url_for(:posts, :index), :method => 'get'  do
+          Search for:
+          == text_field_tag 'query', :value => params[:query]
+          == submit_tag '検索'
+        p Recent Posts
+        ul.bulleted
+          == partial('posts/recent').force_encoding('UTF-8')
+        p Categories
+        ul.bulleted
+          li Item 1 - Lorem ipsum dolorum itsum estem
+          li Item 2 - Lorem ipsum dolorum itsum estem
+          li Item 3 - Lorem ipsum dolorum itsum estem

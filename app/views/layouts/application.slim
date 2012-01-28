@@ -1,0 +1,50 @@
+doctype 5
+/![if lt IE 7]><html class="no-js ie6 oldIE" lang="ja"><![endif]
+/![if IE 7]><html class="no-js ie7 oldIE" lang="ja"><![endif]
+/![if IE 8]><html class="no-js ie8 oldIE" lang="ja"><![endif]
+/![if gt IE 8]><!
+html lang="ja" class="no-js"
+  /!<![endif]
+  head
+    meta charset="utf-8"
+    meta name="viewport" content="initial-scale=1.0,width=device-width"
+    meta name="author" content="ayumusato"
+    title== [@title, "Havelog"].compact.join(" | ").force_encoding('UTF-8')
+    == stylesheet_link_tag 'normalize_and_highlight', Rack::Less.stylesheet('havelog')
+    == yield_content :include_css
+    /[if IE]
+      script src='http://www.w3.org/2008/site/js/html5shiv.js'
+    /[if lt IE 9]
+      == javascript_include_tag 'hayate/hayate'
+    == javascript_include_tag 'highlight.min', 'clayworks/clayworks', 'havelog'
+    script src="http://platform.twitter.com/widgets.js" async="async"
+    script src="http://b.st-hatena.com/js/bookmark_button.js" async="async"
+    script src="http://apis.google.com/js/plusone.js" async="async"
+    == yield_content :include_script
+    == yield_content :include_head
+  body
+    div#fb-root
+    script
+      | (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=245786038828556";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    header#header
+      h1
+        a href="/" Havelog.ayumusato.com
+      menu#menu type="list"
+        li == link_to 'About', url_for(:about)
+        li
+          a href="http://twitter.com/ahomu" title="twitter" Twitter
+        li
+          a href="https://github.com/ahomu" title="github" GitHub
+        li
+          a href="https://plus.google.com/102529584831335302125/about" title="google+" Google+
+    div#container
+      section#main
+        == yield.force_encoding('UTF-8')
+    footer#footer
+      small Copyright (c) 2012 havelog.ayumusato.com

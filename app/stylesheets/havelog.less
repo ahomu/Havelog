@@ -1,0 +1,276 @@
+// Base Variables
+//  => target ÷ context = result
+// 単位は変数のほうに付与する
+
+// @example: 13 / 16em = 0.8125em
+@baseFontSize: 16em;
+
+// @example: 300 / 9.6% = 31.25%
+@baseWidth: 9.6%;    // 96% convert to '0.xx... => xx%' 960px基準と仮定
+
+/* - - - - - - - - - - */
+
+// Color Variables
+
+@linkColor: #0080D4;
+
+/* - - - - - - - - - - */
+
+// Vendor Prefix
+// Firefox3.6~ Safari5.0~ Opera 11~ IE8~
+// http://blog.we-boxes.com/cording/need-for-css3-vendor-prefix/
+
+.gradient-background (@direction: left, @start: rgb(255,255,255) 0%, @end: rgb(246,246,246) 100%) {
+  background-image: linear-gradient(@direction, @start, @end);
+  background-image: -webkit-linear-gradient(@direction, @start, @end);
+  background-image: -moz-linear-gradient(@direction, @start, @end);
+  background-image: -ms-linear-gradient(@direction, @start, @end);
+  background-image: -o-linear-gradient(@direction, @start, @end);
+}
+.box-sizing (@sizing: border-box) {
+  box-sizing: @sizing;
+  -webkit-box-sizing: @sizing;
+  -moz-box-sizing: @sizing;
+}
+.box-shadow (@x, @y, @blur, @color) {
+  -webkit-box-shadow: @x @y @blur @color;
+  -moz-box-shadow: @x @y @blur @color;
+  -shadow: @x @y @blur @color;
+}
+.box-inset-shadow (@x, @y, @blur, @color) {
+  -webkit-box-shadow: inset @x @y @blur @color;
+  -moz-box-shadow: inset @x @y @blur @color;
+  box-shadow: inset @x @y @blur @color;
+}
+.border-radius (@r) {
+  -moz-border-radius: @r;
+  border-radius: @r;
+}
+.transparent-border () {
+  border: 1px dotted #fafafa;
+}
+
+
+/* - - - - - - - - - - */
+
+body {
+  font-family: Calibri, Optima, "メイリオ", Meiryo, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Arial, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+  color: #333;
+  background: #fafafa;
+}
+
+h1, h2, h3 {
+  font-family: "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", "Times New Roman", "ＭＳ Ｐ明朝", "MS PMincho", serif;
+  text-shadow: #fff 0 1px 0;
+}
+
+a {
+  .transparent-border;
+  text-decoration: none;
+  text-shadow: none;
+  transition: color linear 0.1s, border linear 0.1s;
+  -webkit-transition: color linear 0.1s, border linear 0.1s;
+  -moz-transition: color linear 0.1s, border linear 0.1s;
+  -ms-transition: color linear 0.1s, border linear 0.1s;
+  -o-transition: color linear 0.1s, border linear 0.1s;
+
+  &:link {
+    color: @linkColor;
+  }
+  &:visited {
+    color: #336699;
+  }
+  &:hover {
+    color: @linkColor;
+    border: 1px dotted @linkColor;
+  }
+  &:active {
+    text-shadow: 0 1px 0 #999;
+  }
+}
+
+/* - - - - - - - - - - */
+
+/**
+ * 共通の幅系
+ */
+#header,
+#container,
+#footer {
+//  margin: 0 0 0 50 / @baseWidth;
+  margin: 0 auto;
+  padding: 10/@baseWidth 30/@baseWidth;
+  max-width: 960px;
+}
+
+/**
+ * ヘッダー
+ */
+#header {
+  text-align: left;
+
+  // タイトル
+  h1 {
+    font-size: 36/@baseFontSize;
+    font-family: Calibri, Optima, Arial, "メイリオ", Meiryo, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "Osaka", "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+
+    a {
+      border: none;
+      color: #333;
+      &:hover {
+        border: none;
+        color: #fff;
+        background: #333;
+      }
+    }
+  }
+}
+
+  // メニュー
+  #menu {
+    margin: 0;
+    padding: 0;
+    li {
+      display: inline;
+      font-size: 18/@baseFontSize;
+      list-style-type: none;
+
+      &::after {
+        content: "|";
+      }
+      &:last-child::after {
+        content: "";
+      }
+    }
+    a {
+      padding: 3/@baseWidth 5/@baseWidth;
+      border: none;
+      color: #666;
+
+      &:hover {
+        border: none;
+        /*border-bottom: 1px solid #666;*/
+        color: #fff;
+        background: #666;
+      }
+    }
+  }
+
+/**
+ * メインコンテナ
+ */
+#container {
+  margin-top: -20/@baseWidth;
+}
+  /**
+   * 記事
+   */
+  .post {
+    padding: 30/@baseWidth 0;
+    border-bottom: 1px dotted #aaa;
+
+    // 記事ヘッダ
+    header {
+      h1 {
+        a {
+          &:hover {
+            .transparent-border;
+          }
+        }
+        &:hover::after {
+          content: "¶";
+          color: @linkColor;
+        }
+      }
+    }
+    // 記事フッタ
+    foter {
+
+    }
+  }
+    //本文
+    .body {
+
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        margin-top: 2em;
+      }
+
+      li {
+        margin-bottom: 0.5em;
+      }
+
+      cite {
+        padding-top: 0.5em;
+        display: block;
+        text-align: right;
+      }
+
+      strong {
+        font-weight: normal;
+        color: crimson;
+      }
+
+      em {
+        color: #333333;
+        background-color: #FFF7B5;
+        text-shadow: none;
+        font-style: normal;
+      }
+
+      small:before {
+          content: '※ ';
+      }
+
+      ins {
+        text-decoration: underline;
+      }
+
+      del {
+        opacity: 0.66;
+        text-decoration: line-through;
+      }
+
+      pre {
+        padding: 10/@baseWidth 20/@baseWidth;
+        font-size: 14/@baseFontSize;
+        border: 1px solid #ccc;
+        .border-radius(3px);
+        background-color: #fff;
+
+        code {
+          border: none;
+          color: inherit;
+          background-color: inherit;
+        }
+      }
+
+      var,
+      code {
+        font-family: "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace !important;
+        padding: 3px 3px 2px 3px;
+        border: solid 1px #ddd;
+        background-color: #ffffff;
+        font-style: normal;
+        color: #111;
+      }
+
+      blockquote {
+        position: relative;
+        margin: 10px 0;
+        padding: 10/@baseWidth 20/@baseWidth;
+        font-style: italic;
+        text-shadow: #fff 0 1px 0;
+        background-color: #eeeeee;
+        z-index: 5;
+        a {
+          border: 1px dotted #eeeeee;
+          &:hover {
+            border: 1px dotted @linkColor;
+          }
+        }
+      }
+    }
