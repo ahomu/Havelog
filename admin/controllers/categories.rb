@@ -7,11 +7,13 @@ Admin.controllers :categories do
 
   get :new do
     @category = Category.new
+    @categories = Category.all
     render 'categories/new'
   end
 
   post :create do
     @category = Category.new(params[:category])
+    @categories = Category.all
     if @category.save
       flash[:notice] = 'Category was successfully created.'
       redirect url(:categories, :edit, :id => @category.id)
@@ -22,11 +24,13 @@ Admin.controllers :categories do
 
   get :edit, :with => :id do
     @category = Category.find(params[:id])
+    @categories = Category.all
     render 'categories/edit'
   end
 
   put :update, :with => :id do
     @category = Category.find(params[:id])
+    @categories = Category.all
     if @category.update_attributes(params[:category])
       flash[:notice] = 'Category was successfully updated.'
       redirect url(:categories, :edit, :id => @category.id)

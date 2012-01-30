@@ -12,9 +12,8 @@ html lang="ja" class="no-js"
     title== [@title, "Havelog"].compact.join(" | ").force_encoding('UTF-8')
     == stylesheet_link_tag 'normalize_and_highlight', Rack::Less.stylesheet('havelog')
     == yield_content :include_css
-    /[if IE]
-      script src='http://www.w3.org/2008/site/js/html5shiv.js'
     /[if lt IE 9]
+      script src='http://www.w3.org/2008/site/js/html5shiv.js'
       == javascript_include_tag 'hayate/hayate'
     == javascript_include_tag 'highlight.min', 'clayworks/clayworks', 'havelog'
     script src="http://platform.twitter.com/widgets.js" async="async"

@@ -12,6 +12,13 @@
   br
   span.description Ex: a simple text
 
+.group
+  ==f.label :parent_id
+  ==f.error_message_on :parent_id
+  - if @categories.length != 0
+    ==f.select :parent_id, :include_blank => '(none)', :collection => @categories, :fields => [:name, :id]
+  - else
+    ==f.select :parent_id, :options => [['...', '']]
 
 .group.navform.wat-cf
   ==f.submit pat(:save), :class => :button

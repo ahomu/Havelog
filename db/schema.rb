@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 5) do
+ActiveRecord::Schema.define(:version => 6) do
 
   create_table "accounts", :force => true do |t|
     t.string   "nickname"
@@ -29,11 +29,15 @@ ActiveRecord::Schema.define(:version => 5) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "parent_id"
   end
 
   create_table "posts", :force => true do |t|
     t.string   "title"
+    t.string   "code"
+    t.string   "status"
     t.text     "body"
+    t.datetime "published_at"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "account_id"

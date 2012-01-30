@@ -18,8 +18,8 @@
 .group
   ==f.label :category
   ==f.error_message_on :category
-  - if @category.length != 0
-    ==f.select :category_id, :include_blank => '(none)', :collection => @category, :fields => [:name, :id]
+  - if @categories.length != 0
+    ==f.select :category_id, :include_blank => '(none)', :collection => @categories, :fields => [:name, :id]
   - else
     ==f.select :category_id, :options => [['...', '']]
 
