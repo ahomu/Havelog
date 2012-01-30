@@ -15,7 +15,8 @@ gem 'slim'
 gem 'activerecord', :require => "active_record"
 gem 'mysql'
 
-# Convert requirements
+# Havelog requirements
+gem 'will_paginate', '~> 3.0'
 gem 'rdiscount'
 
 # Test requirements

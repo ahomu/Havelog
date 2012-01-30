@@ -1,4 +1,6 @@
 Havelog.controllers :posts do
+  register WillPaginate::Sinatra
+
   # get :index, :map => "/foo/bar" do
   #   session[:foo] = "bar"
   #   render 'index'
@@ -19,7 +21,8 @@ Havelog.controllers :posts do
   # end
 
   get :index, :provides => [:html, :rss]  do
-    @posts = Post.all(:order => 'created_at desc')
+    @posts = Post.where(:status => 'open').paginate(:page => params[:page], :per_page => 10).order('created_at DESC')
+
     render 'posts/index'
   end
 

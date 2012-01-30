@@ -103,6 +103,7 @@ GEM
     tzinfo (0.3.31)
     url_mount (0.2.1)
       rack
+    will_paginate (3.0.2)
 
 PLATFORMS
   ruby
@@ -119,3 +120,4 @@ DEPENDENCIES
   rspec
   sinatra-flash
   slim
+  will_paginate (~> 3.0)

@@ -3,6 +3,7 @@ class Havelog < Padrino::Application
   register Padrino::Rendering
   register Padrino::Mailer
   register Padrino::Helpers
+  register WillPaginate::Sinatra
 
   enable :sessions
 
@@ -12,7 +13,8 @@ class Havelog < Padrino::Application
   #end
 
   get :index, :provides => [:html, :rss]  do
-    @posts = Post.all(:order => 'created_at desc')
+    @posts = Post.where(:status => 'open').paginate(:page => params[:page], :per_page => 10).order('created_at DESC')
+    #@posts = Post.all(:order => 'created_at desc')
 
     render 'posts/index'
   end
